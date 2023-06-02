@@ -5,7 +5,7 @@ const routerApi = require('./routes');
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handle');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Uso de Middleware para usar el formato JSON cuando recibe informacion (propio de Express)
 app.use(express.json());
@@ -14,7 +14,7 @@ app.use(express.json());
 const whitelist = ['http://localhost:8080', 'https://my-store-service.onrender.com/'];
 const options = {
   origin: (origin, callback) => {
-    if (whitelist.includes(origin)) {
+    if (whitelist.includes(origin) || !origin) {
       callback(null, true);
     } else {
       callback(new Error('no permitido'));
