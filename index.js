@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 //Utilizamos CORS para permitir que usen nuestra API, y agregando options es para definir una lista de que dominios pueden acceder a ella
-const whitelist = ['http://localhost:8080', 'https://my-store-service.onrender.com/'];
+const whitelist = ['http://localhost:8080'];
 const options = {
   origin: (origin, callback) => {
     if (whitelist.includes(origin) || !origin) {
